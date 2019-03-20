@@ -2,18 +2,19 @@ import { store } from './'
 import axios from 'axios'
 import {Notify} from 'quasar'
 
+let link = `http://api.stillwatermall.com`
 export function  getCars({state, commit}){
-    axios.get("http://scraping.local/vehicles")
+    axios.get(link+"/vehicles")
         .then(res => commit("updateField",{path:"cars", value:res.data}) /*state.cars = */ )
         .catch(err => Notify("Error getting data"))
 }
 export function  getRestaurants({state, commit}){
-    axios.get("http://scraping.local/restaurants")
+    axios.get(link+"/restaurants")
         .then(res => commit("updateField", {path:"restaurants", value:res.data}) )
         .catch(err => Notify("Error getting data"))
 }
 export function  getAttractions({state, commit}){
-    axios.get("http://scraping.local/locations")
+    axios.get(link+"/locations")
         .then(res => commit("updateField", {path:"attractions", value:res.data}) )
         .catch(err => Notify("Error getting data"))
 }
