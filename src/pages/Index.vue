@@ -1,17 +1,17 @@
 <template>
-  <q-page class="">
+  <q-page class="q-mx-aut">
     <div class="col-12">
       <h1 class="q-headline capitalize">View what's going on in Stillwater, OK</h1>
       <p>
         Hello everyone, my name is John and this is an AI project I came up with.
         I am training my ML algorithm to study local businesses in Stillwater and how people interact with them.
         Feel free to browse through and find things you like about this awesome city or fun things to do. Ciao.
-        <hr>
+      <hr/>
       </p>
     </div>
     <!--<img alt="Quasar logo" src="~assets/quasar-logo-full.svg">-->
     <div class="row">
-      <div class="col-md-9 col-12">
+      <div class="col-md-9 col-12 q-pr-md">
         <div>
           <h2 class="q-mx-auto q-title">
             Places to eat in Stillwater
@@ -19,8 +19,8 @@
           <div class="row">
             <q-spinner-pie size="50px" color="primary" v-if="!showRestaurants" class="q-mx-auto"></q-spinner-pie>
           </div>
-          <div class="row" id="restaurants">
-          <q-card v-if="showRestaurants" v-for="(restaurant,ind) in restaurants" :key="restaurant.id" class="q-mb-sm col-6 col-md-4 col-xl-3 " thumbnails-icon="times">
+          <div class="row gutter-xs" id="restaurants">
+          <q-card inline v-if="showRestaurants" v-for="(restaurant,ind) in restaurants" :key="restaurant.id" class="q-mb-sm col-6 col-md-4 " thumbnails-icon="times">
               <q-card-media v-if="!!restaurant.images && !!restaurant.images[0].link">
                 <img  :src="restaurant.images[0].link" :title="restaurant['image-title']" :alt="restaurant['image-alt']">
               </q-card-media>
@@ -28,9 +28,9 @@
                 <span class="q-body-2 text-weight-bolder">{{ restaurant.title }}</span><br>
               </q-card-title>
             <q-card-main>
-              <a :href="'https://www.google.com/search?q='+restaurant.address" target="_blank">
-                <q-icon size=".8rem" name="map-marker" color="brown" class="q-inline"></q-icon>
-                <p class="q-body-2">{{ restaurant.address }}</p>
+              <a class="addr_link" :href="'https://maps.google.com?q='+restaurant.title" target="_blank">
+                <q-icon size="1rem" name="pin_drop" color="brown" class="q-inline"></q-icon>
+                <p class="q-body-2 _address">{{ restaurant.address }}</p>
               </a>
             </q-card-main>
           </q-card>
@@ -38,13 +38,13 @@
         </div>
         <div>
           <h2 class="q-mx-auto q-title">
-            Fun Places in Stillwater
+            Fun Places to Visit Stillwater
           </h2>
           <div class="row">
             <q-spinner-pie size="50px" color="primary" v-if="!showAttractions" class="q-mx-auto"></q-spinner-pie>
           </div>
-          <div class="row" id="attractions">
-          <q-card v-if="showAttractions" v-for="(attraction,ind) in attractions" :key="attraction.id" class="q-mb-sm col-6 col-md-4 col-xl-3 " thumbnails-icon="times">
+          <div class="row gutter-xs" id="attractions" >
+          <q-card inline v-if="showAttractions" v-for="(attraction,ind) in attractions" :key="attraction.id" class="q-mb-sm col-6 col-md-4" thumbnails-icon="times">
               <q-card-media v-if="attractionsHasImages">
                 <img  :src="(attraction.images[0]||'').link||''" :title="attraction['image-title']" :alt="attraction['image-alt']">
               </q-card-media>
@@ -52,16 +52,16 @@
                 <span class="q-body-2 text-weight-bolder">{{ attraction.title }}</span><br>
               </q-card-title>
             <q-card-main>
-              <a :href="'https://www.google.com/search?q='+attraction.address" target="_blank">
-                <q-icon size=".8rem" name="map-marker" color="brown" class="q-inline"></q-icon>
-                <p class="q-body-2">{{ attraction.address }}</p>
+              <a class="addr_link" :href="'https://maps.google.com?q='+attraction.title" target="_blank">
+                <q-icon size="1rem" name="pin_drop" color="brown" class="q-inline"></q-icon>
+                <p class="q-body-2 _address">{{ attraction.address }}</p>
               </a>
             </q-card-main>
           </q-card>
         </div>
         </div>
       </div>
-      <div class="col-md-3 col-12 ">
+      <div class="col-md-3 col-12 q-pl-md car-block">
 
         <div class="row">
           <h2 class="q-mx-auto q-title">
@@ -156,4 +156,30 @@ export default {
   #restaurants .q-card-media {
     max-height: 8rem;
   }
+  ._address{
+    display: contents;
+  }
+  a.addr_link{
+    text-decoration: none;
+  }
+  .car-block{
+    box-shadow: -4px 0px 0px 0px #eee4;
+  }
+  h2.q-title {
+    font-size: 1.8rem;
+  }
+  h1.q-headline {
+    font-size: 3rem;
+  }
+  .q-card-title .q-body-2 {
+    font-size: 1.2rem;
+    color: #235f;
+  }
+  p.q-body-2._address {
+    color: #47b;
+  }
+  i.q-icon.q-inline.material-icons.text-brown {
+    padding-right: 1rem;
+  }
+
 </style>

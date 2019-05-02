@@ -11,4 +11,8 @@ export default {
 </script>
 
 <style>
+  #q-app {
+    max-width: 1200px;
+    margin: auto;
+  }
 </style>
