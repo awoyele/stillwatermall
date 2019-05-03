@@ -170,6 +170,7 @@ export default {
   }
   h1.q-headline {
     font-size: 3rem;
+    line-height: 48px;
   }
   .q-card-title .q-body-2 {
     font-size: 1.2rem;
