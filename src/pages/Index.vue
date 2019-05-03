@@ -11,7 +11,7 @@
     </div>
     <!--<img alt="Quasar logo" src="~assets/quasar-logo-full.svg">-->
     <div class="row">
-      <div class="col-md-9 col-12 q-pr-md">
+      <div class="col-md-9 col-12 q-px-md">
         <div>
           <h2 class="q-mx-auto q-title">
             Places to eat in Stillwater
