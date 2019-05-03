@@ -181,5 +181,15 @@ export default {
   i.q-icon.q-inline.material-icons.text-brown {
     padding-right: 1rem;
   }
+  .q-card.q-mb-sm.col-6.col-md-4.inline-block {
+      margin: 13px 8px;
+  }
+  .q-pr-md .row>.col-md-4 {
+      width: 31.4%;
+  }
+  .q-card.q-mb-sm.col-6.col-md-4.inline-block {
+       padding: 4px;
+       background-color: #def;
+   }
 
 </style>
