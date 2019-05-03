@@ -20,7 +20,7 @@
             <q-spinner-pie size="50px" color="primary" v-if="!showRestaurants" class="q-mx-auto"></q-spinner-pie>
           </div>
           <div class="row gutter-xs" id="restaurants">
-          <q-card inline v-if="showRestaurants" v-for="(restaurant,ind) in restaurants" :key="restaurant.id" class="q-mb-sm col-6 col-md-4 " thumbnails-icon="times">
+          <q-card inline v-if="showRestaurants" v-for="(restaurant,ind) in restaurants" :key="restaurant.id" class="q-mb-sm col-6 col-lg-4 " thumbnails-icon="times">
               <q-card-media v-if="!!restaurant.images && !!restaurant.images[0].link">
                 <img  :src="restaurant.images[0].link" :title="restaurant['image-title']" :alt="restaurant['image-alt']">
               </q-card-media>
@@ -44,7 +44,7 @@
             <q-spinner-pie size="50px" color="primary" v-if="!showAttractions" class="q-mx-auto"></q-spinner-pie>
           </div>
           <div class="row gutter-xs" id="attractions" >
-          <q-card inline v-if="showAttractions" v-for="(attraction,ind) in attractions" :key="attraction.id" class="q-mb-sm col-6 col-md-4" thumbnails-icon="times">
+          <q-card inline v-if="showAttractions" v-for="(attraction,ind) in attractions" :key="attraction.id" class="q-mb-sm col-6 col-lg-4" thumbnails-icon="times">
               <q-card-media v-if="attractionsHasImages">
                 <img  :src="(attraction.images[0]||'').link||''" :title="attraction['image-title']" :alt="attraction['image-alt']">
               </q-card-media>
@@ -188,7 +188,7 @@ export default {
   .q-pr-md .row>.col-md-4 {
       width: 31.4%;
   }
-  .q-card.q-mb-sm.col-6.col-md-4.inline-block {
+  .q-card {
        padding: 4px;
        background-color: #def;
    }
