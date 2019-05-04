@@ -20,7 +20,7 @@ module.exports = function (ctx) {
     build: {
       // scopeHoisting: true,
       vueRouterMode: 'history',
-      env: !ctx.dev && {PORT:"9020"},
+      env: {PORT:JSON.stringify(9020)},
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,
