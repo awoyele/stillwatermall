@@ -19,22 +19,26 @@
           <div class="row">
             <q-spinner-pie size="50px" color="primary" v-if="!showRestaurants" class="q-mx-auto"></q-spinner-pie>
           </div>
-          <div class="row gutter-xs" id="restaurants">
-          <q-card inline v-if="showRestaurants" v-for="(restaurant,ind) in restaurants" :key="restaurant.id" class="q-mb-sm col-6 col-lg-4 goodies " thumbnails-icon="times">
+          <carousel :per-page="3" :autoplay="true" :navigation-enabled="true" :scroll-per-page="false" :autoplayTimeout="6000" :loop="true" id="restaurants">
+            <template v-if="showRestaurants" v-for="(restaurant,ind) in restaurants">
+            <slide>
+              <q-card inline :key="restaurant.id" class="q-mb-sm col-6 col-lg-4  " thumbnails-icon="times">
               <q-card-media v-if="!!restaurant.images && !!restaurant.images[0].link">
                 <img  :src="restaurant.images[0].link" :title="restaurant['image-title']" :alt="restaurant['image-alt']">
               </q-card-media>
               <q-card-title class="row">
                 <span class="q-body-2 text-weight-bolder">{{ restaurant.title }}</span><br>
               </q-card-title>
-            <q-card-main>
-              <a class="addr_link" :href="'https://maps.google.com?q='+restaurant.title" target="_blank">
-                <q-icon size="1rem" name="pin_drop" color="brown" class="q-inline"></q-icon>
-                <p class="q-body-2 _address">{{ restaurant.address }}</p>
-              </a>
-            </q-card-main>
-          </q-card>
-        </div>
+              <q-card-main>
+                <a class="addr_link" :href="'https://maps.google.com?q='+restaurant.title" target="_blank">
+                  <q-icon size="1rem" name="pin_drop" color="brown" class="q-inline"></q-icon>
+                  <p class="q-body-2 _address">{{ restaurant.address }}</p>
+                </a>
+              </q-card-main>
+            </q-card>
+            </slide>
+            </template>
+          </carousel>
         </div>
         <div>
           <h2 class="q-mx-auto q-title">
@@ -43,22 +47,26 @@
           <div class="row">
             <q-spinner-pie size="50px" color="primary" v-if="!showAttractions" class="q-mx-auto"></q-spinner-pie>
           </div>
-          <div class="row gutter-xs" id="attractions" >
-          <q-card inline v-if="showAttractions" v-for="(attraction,ind) in attractions" :key="attraction.id" class="q-mb-sm col-6 col-lg-4 goodies" thumbnails-icon="times">
-              <q-card-media v-if="attractionsHasImages">
-                <img  :src="(attraction.images[0]||'').link||''" :title="attraction['image-title']" :alt="attraction['image-alt']">
-              </q-card-media>
-              <q-card-title class="row">
-                <span class="q-body-2 text-weight-bolder">{{ attraction.title }}</span><br>
-              </q-card-title>
-            <q-card-main>
-              <a class="addr_link" :href="'https://maps.google.com?q='+attraction.title" target="_blank">
-                <q-icon size="1rem" name="pin_drop" color="brown" class="q-inline"></q-icon>
-                <p class="q-body-2 _address">{{ attraction.address }}</p>
-              </a>
-            </q-card-main>
-          </q-card>
-        </div>
+            <carousel :per-page="3" :autoplay="true" :navigation-enabled="true" :scroll-per-page="false" :autoplayTimeout="4000" :loop="true" id="attractions" >
+              <template v-if="showAttractions" v-for="(attraction,ind) in attractions">
+                <slide>
+                <q-card inline :key="attraction.id" class="q-mb-sm col-6 col-lg-4" thumbnails-icon="times">
+                <q-card-media v-if="attractionsHasImages">
+                  <img  :src="(attraction.images[0]||'').link||''" :title="attraction['image-title']" :alt="attraction['image-alt']">
+                </q-card-media>
+                <q-card-title class="row">
+                  <span class="q-body-2 text-weight-bolder">{{ attraction.title }}</span><br>
+                </q-card-title>
+                <q-card-main>
+                  <a class="addr_link" :href="'https://maps.google.com?q='+attraction.title" target="_blank">
+                    <q-icon size="1rem" name="pin_drop" color="brown" class="q-inline"></q-icon>
+                    <p class="q-body-2 _address">{{ attraction.address }}</p>
+                  </a>
+                </q-card-main>
+                </q-card>
+                </slide>
+              </template>
+            </carousel>
         </div>
       </div>
       <div class="col-md-3 col-12 q-pl-md car-block">
@@ -105,12 +113,13 @@
 
 <script>
   import homeStoreModule from '../store/home'
+  import { Carousel, Slide } from 'vue-carousel';
   import { mapMultiRowFields } from 'vuex-map-fields';
   import { QIcon, QCard, QCardTitle, QCardMain, QCardMedia, Notify, QModal, QBtn, QCarousel, QCarouselSlide, QCarouselControl, QInnerLoading, QSpinnerGears, QSpinnerPie} from "quasar"
 
 export default {
   name: 'PageIndex',
-  components:{ QIcon, QCard, QCardTitle, QCardMain, QCardMedia, Notify, QModal, QBtn, QCarousel, QCarouselSlide, QCarouselControl, QInnerLoading, QSpinnerGears, QSpinnerPie },
+  components:{ QIcon, QCard, QCardTitle, QCardMain, QCardMedia, Notify, QModal, QBtn, QCarousel, QCarouselSlide, QCarouselControl, QInnerLoading, QSpinnerGears, QSpinnerPie , Carousel, Slide},
   data: ()=>({ carModal:false, carM:{}, /*cars:[], restaurants:[], attractions:[]*/}),
   methods:{
     showCar(ind){
@@ -196,5 +205,8 @@ export default {
      padding: 4px;
      background-color: #def;
    }
+  .VueCarousel .q-card-media {
+    max-height: 11rem;
+  }
 
 </style>
